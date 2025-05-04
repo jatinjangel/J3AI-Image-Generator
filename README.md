@@ -12,3 +12,9 @@ A Flask-based web application that generates AI-powered images using Stable Diff
    ```bash
    git clone https://github.com/your-username/J3AI-Image-Generator.git
    cd J3AI-Image-Generator
+   
+## Install dependencies
+pip install -r requirements.txt
+
+## Run the application
+python app.py

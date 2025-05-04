@@ -1,0 +1,40 @@
+# Importing necessary libraries
+from flask import Flask, render_template, request, jsonify
+import gradio as gr
+from diffusers import StableDiffusionPipeline
+import torch
+from pyngrok import ngrok
+
+# Initialize Flask app
+app = Flask(__name__)
+
+# Load pre-trained Stable Diffusion model (make sure you have the model downloaded)
+pipe = StableDiffusionPipeline.from_pretrained("CompVis/stable-diffusion-v1-4-original", torch_dtype=torch.float16)
+pipe.to("cuda")
+
+# Gradio interface function
+def generate_image(prompt):
+    # Generate an image based on the input prompt
+    image = pipe(prompt).images[0]
+    return image
+
+# Create the Gradio interface
+gr_interface = gr.Interface(fn=generate_image, 
+                            inputs=gr.Textbox(label="Enter your prompt", lines=2),
+                            outputs=gr.Image(label="Generated Image"))
+
+# Function to expose Gradio interface using ngrok for public URL
+def launch_gradio():
+    public_url = ngrok.connect(port=7860)  # ngrok will give a public URL for the local Gradio app
+    print("Gradio UI is live at:", public_url)
+    gr_interface.launch(share=True, server_name="0.0.0.0", server_port=7860)
+
+# Flask route to serve home page
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+# Start Flask app
+if __name__ == "__main__":
+    launch_gradio()  # Launch Gradio UI on ngrok URL
+    app.run(debug=True, port=5000)  # Run Flask on port 5000

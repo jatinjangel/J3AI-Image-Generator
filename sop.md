@@ -3,7 +3,7 @@
 *AI‑Powered Image Generation using Stable Diffusion & ControlNet*
 
 <p align="center">
-  <img src="flowchart.png" width="520" alt="Git Branching Flowchart">
+  <img src="flowchart.png" width="220" alt="Git Branching Flowchart">
 </p>
 <p align="center">
   <sub><i>Figure 1: Git Branching & Development Workflow</i></sub>

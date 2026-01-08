@@ -94,7 +94,7 @@ Example:
 <p align="center">
   <b>Jatin Jangel</b><br>
   Project Owner & Developer<br>
-  B.Sc. Data Science
+  B.Sc. Data Science / Devops Engineer
 </p>
 
 ---
